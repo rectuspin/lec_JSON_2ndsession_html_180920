@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Frontend</title>
+      <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  
+  <body>
+    
+    <div class="post_list">
+      <h1>글 목록</h1>
+      
+    </div>
+  </body>
+  
+  <script type="text/javascript">
+    $.ajax({
+      url: 'https://sukhwan180920-rectuspin.c9users.io/posts',
+      method: 'get'
+    })    
+    .done(function(result_data_list){
+      var posts=result_data_list.posts
+      
+      posts.forEach(function(post){
+        var post_div = $('<div>').attr('class', 'post'+post.id)
+        
+        var title_div = $('<div>').attr('class', 'post_title').append('제목' + post.title)
+        
+        var content_div = $('<div>').attr('class', 'post_content').append('내용'+post.content+'<hr>')
+        
+        post_div.append(title_div)
+        
+        post_div.append(content_div)
+        
+        $('.post_list').append(post_div)
+
+      })
+    })
+  </script>
+</html>
